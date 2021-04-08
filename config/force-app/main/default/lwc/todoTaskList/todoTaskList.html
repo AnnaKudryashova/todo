@@ -1,0 +1,42 @@
+<template>
+    <lightning-card title="Todo List" icon-name="standard:record">
+        <lightning-button
+        label="Create a Task"   
+        onclick={navigateToNewTodo}
+        class="slds-m-left_x-small"
+        variant="success"></lightning-button>
+
+        <template if:true={todos}>
+            <div class="slds-var-m-around_medium">
+                <template for:each={todos} for:item="todo">
+                    <lightning-layout key={todo.Id}>
+                        <lightning-layout-item flexibility="grow">
+                        <c-todo-tile
+                        class="slds-show slds-is-relative"
+                        key={todo.Id}
+                        todo={todo}
+                        class-name={todo.LabApp__Category__c}
+                    ></c-todo-tile></lightning-layout-item>
+
+                        <lightning-layout-item>
+                            <lightning-button-icon
+                                icon-name="utility:edit"
+                                onclick={navigateToEditTodo}
+                                data-recordid={todo.Id}
+                            ></lightning-button-icon>
+                        </lightning-layout-item>
+
+                        <lightning-layout-item>
+                            <lightning-button-icon
+                                icon-name="utility:delete"
+                                onclick={deleteTodo}
+                                data-recordid={todo.Id}
+                            ></lightning-button-icon>
+                        </lightning-layout-item>
+
+                    </lightning-layout>
+                </template>
+            </div>
+        </template>
+    </lightning-card>
+</template>

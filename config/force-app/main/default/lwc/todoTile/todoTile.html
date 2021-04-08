@@ -1,0 +1,19 @@
+<template>
+    <template if:true={todo}>
+        <lightning-layout vertical-align="center">
+            <lightning-layout-item>
+                <img src={todo.LabApp__ImageUrl__c} alt="Todo image"/>  
+                </lightning-layout-item>
+                     
+            <lightning-layout-item flexibility="auto" padding="around-small">
+                <div class={alertClassName}>
+                <p>{todo.LabApp__Title__c}</p>
+                <p>category: {todo.LabApp__Category__c}</p>
+                <p>priority: {todo.LabApp__Priority__c}</p> 
+                <p>is done: {todo.LabApp__Status__c}</p>
+            </div>               
+            </lightning-layout-item>
+        </lightning-layout>
+    </template>
+    <template if:false={todo}><p>No todo data available.</p></template>
+</template>
